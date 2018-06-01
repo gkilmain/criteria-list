@@ -1,0 +1,176 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "criteria list",
+      "intents": [
+        {
+          "name": "StartQuery",
+          "slots": [
+            {
+              "name": "COMPANY_NAME",
+              "type": "COMPANY_NAMES"
+            },
+            {
+              "name": "JOB_TITLE",
+              "type": "JOB_TITLES"
+            },
+            {
+              "name": "LOCATION",
+              "type": "AMAZON.US_CITY"
+            }
+          ],
+          "samples": [
+            "start query",
+            "open query"
+          ]
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "COMPANY_NAMES",
+          "values": [
+            {
+              "name": {
+                "value": "microsoft"
+              }
+            },
+            {
+              "name": {
+                "value": "facebook"
+              }
+            },
+            {
+              "name": {
+                "value": "amazon"
+              }
+            },
+            {
+              "name": {
+                "value": "google"
+              }
+            }
+          ]
+        },
+        {
+          "name": "JOB_TITLES",
+          "values": [
+            {
+              "name": {
+                "value": "executive assistant"
+              }
+            },
+            {
+              "name": {
+                "value": "cfo"
+              }
+            },
+            {
+              "name": {
+                "value": "ceo"
+              }
+            },
+            {
+              "name": {
+                "value": "product manager"
+              }
+            },
+            {
+              "name": {
+                "value": "delivery truck driver"
+              }
+            },
+            {
+              "name": {
+                "value": "customer service"
+              }
+            },
+            {
+              "name": {
+                "value": "software engineer"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "StartQuery",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "COMPANY_NAME",
+              "type": "COMPANY_NAMES",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1120988023312.1115191673738"
+              }
+            },
+            {
+              "name": "JOB_TITLE",
+              "type": "JOB_TITLES",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1120988023312.1136175818320"
+              }
+            },
+            {
+              "name": "LOCATION",
+              "type": "AMAZON.US_CITY",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1120988023312.1041326926929"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1120988023312.1115191673738",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what is the company name"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1120988023312.1136175818320",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what is the job title?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1120988023312.1041326926929",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "what city?"
+          }
+        ]
+      }
+    ]
+  }
+}
