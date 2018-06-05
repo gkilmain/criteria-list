@@ -9,14 +9,30 @@ const StartQueryIntentHandler = {
       && handlerInput.requestEnvelope.request.intent.name === 'StartQuery';
   },
   handle(handlerInput){
-    const speechText = "Okay, let's get started.";
+    const speechText = "Okay, let's get started building a list.";
+    console.log('This called: ', this)
 
     return handlerInput.responseBuilder
       .speak(speechText)
-//      .reprompt(speechText)
       .getResponse()
   }
 }
+
+const InProgressStartQueryIntentHandler = {
+  canHandle(handlerInput) {
+    const request = handlerInput.requestEnvelope.request;
+    console.log('This called: ', this)
+    return request.type === 'IntentRequest' &&
+      request.intent.name === 'StartQuery' &&
+      request.dialogState !== 'COMPLETED';
+  },
+  handle(handlerInput) {
+    const currentIntent = handlerInput.requestEnvelope.request.intent;
+    return handlerInput.responseBuilder
+      .addDelegateDirective(currentIntent)
+      .getResponse();
+  },
+};
 
 const LaunchRequestHandler = {
   canHandle(handlerInput) {
@@ -98,7 +114,8 @@ exports.handler = skillBuilder
     HelpIntentHandler,
     CancelAndStopIntentHandler,
     SessionEndedRequestHandler,
-    StartQueryIntentHandler
+    StartQueryIntentHandler,
+    InProgressStartQueryIntentHandler
   )
   .addErrorHandlers(ErrorHandler)
   .lambda();
